@@ -6,7 +6,7 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:32:37 by ekrause           #+#    #+#             */
-/*   Updated: 2024/08/19 14:27:25 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/12 17:22:14 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,31 @@ typedef struct s_fork t_fork;
 
 typedef struct s_arg
 {
-	int		nb_philo;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		must_eat;
-	int		start;
+	long	nb_philo;
+	long	time_to_die;
+	long	time_to_eat;
+	long	time_to_sleep;
+	long	must_eat;
+	long	start;
+	int		flag;
+	pthread_mutex_t end_mutex;
+	pthread_mutex_t write_mutex;
 	t_philo	*philos;
 	t_fork	*forks;
 }	t_arg;
 
 typedef struct s_fork
 {
-	int				id;
+	long			id;
 	pthread_mutex_t	fork;
 }	t_fork;
 
 typedef struct s_philo
 {
-	int			id;
+	long		id;
 	pthread_t	philo;
-	int			last_meal;
-	int			nbr_meals;
+	long		last_meal;
+	long		nbr_meals;
 	t_fork		*left_fork;
 	t_fork		*right_fork;
 	t_arg		*arg;
